@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_topping_form" model="ir.ui.view">
+            <field name="name">product.toppings.form</field>
+            <field name="model">product.toppings</field>
+            <field name="arch" type="xml">
+                <form string="Toppings">
+                    <header>
+                        <button name="%(act_open_select_products_view)d" type="action" string="Select Toppings"
+                        context="{'default_flag_order': 'so'}" class="oe_highlight" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" required="True"/>
+                            </h1>
+                        </div>
+                        <notebook>
+                            <page name="Toppings" string="Toppings Information">
+                                <field name="topping_line" >
+                            <tree string="Toppings" editable="bottom">
+                                <field name="name"/>
+                            </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_toppings_tree" model="ir.ui.view">
+            <field name="name">product.toppings.tree</field>
+            <field name="model">product.toppings</field>
+            <field name="arch" type="xml">
+                <tree string="Toppings">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="product_toppings_action" model="ir.actions.act_window">
+            <field name="name">Product Toppings</field>
+            <field name="res_model">product.toppings</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click here to define a new toppings list.
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="toppings_config_menu"
+                  name="Toppings"
+                  parent="point_of_sale.menu_point_config_product"
+                  action="product_toppings_action"
+                  sequence="3"/>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+ <t t-name="OrderLineDeleteButton">
+        <div class='control-button orders-delete'>
+            <i class='fa fa-trash '/> Delete Line
+        </div>
+    </t>
+    <t t-name="DeletePopupWidget">
+
+
+
+        <div class="modal-dialog">
+            <div class="popup popup-selection pos_order_details">
+                <p class="title">Order Details</p>
+                <div class='selection scrollable-y touch-scrollable'>
+                    <t t-set="order" t-value="widget.options.order"/>
+                    <t t-if="order">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="text-align: left;padding: 0px 0px 0px 15px !important;">Payment Method:</td>
+                            <td style="text-align: left;padding: 0px 0px 0px 15px !important;">
+                                <select id="select_option" class="right_protection" name='rightprotection' style="width:100%">-->
+                                    <option value=''></option>
+                                        <t t-foreach='widget.pos.journals' t-as='journal'>
+                                             <option t-att-value='journal.id'>
+                                            <t t-esc='journal.name'/>
+                                        </option>
+                                        </t>
+                                 </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;padding: 0px 0px 0px 15px !important;">Amount:</td>
+                            <td style="text-align: left;padding: 0px 0px 0px 15px !important;">
+                                <input type='number' id="amount" t-att-value= "order.amount_total-order.amount_paid" class='form-control booking_field' name="payment_partial_amount"/>
+                            </td>
+
+
+                        </tr>
+                    </table>
+                    </t>
+                    <div class="footer">
+                    <div class="button pay">
+                        Pay
+                    </div>
+                    <div class="button cancel">
+                        Close
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </t>
+
+
+
+    <t t-name="popup_return_pos_order_lines">
+        <div class="modal-dialog cashier">
+            <div class="popup popup-selection cashier">
+                <p class="title"><t t-esc=" widget.options.title || 'Select' " /></p>
+                <div class='selection scrollable-y touch-scrollable cashier'>
+                    <div class="selection cashier">
+                        <t t-foreach="widget.options.order_lines || []" t-as="item">
+                            <div class="checkbox">
+                        <label>
+
+                        </label>
+                    </div>
+                            <div class='selection-item'>
+                                <input class="line-select" type="checkbox" name="optionsCheckboxes"  t-att-data-id="item.id" style="width:unset;min-height:0px;margin-right:12px;">
+                                <span class="checkbox-material"><span class="check"></span></span>
+                            </input>
+                                <t t-esc='item.product.display_name'/>
+
+                            </div>
+                        </t>
+                    </div>
+                </div>
+                <div class="footer cashier">
+                    <div class="button remove">
+                        Remove
+                    </div>
+                    <div class="button cancel">
+                        Cancel
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+<!--<t t-name="popup_return_pos_order_lines">-->
+<!--        <div class="modal-dialog" style="width:60%;height:85%;left:230px;background-color:green">-->
+<!--            <div class="popup popup-selection pos_order_details">-->
+<!--                <div class="card">-->
+<!--                    <div class="card-content">-->
+
+<!--                        <h4 class="card-title">-->
+<!--                            Remove Order Line-->
+<!--                        </h4>-->
+
+<!--                        <div class="table-responsive">-->
+<!--                            <table class="table table-striped">-->
+<!--                                <tbody>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <footer>-->
+<!--                        <div class="card-footer text-center">-->
+<!--                            <div class="btn btn-success confirm_return_order">-->
+<!--                                <i class="fa fa-check"/> Confirm return-->
+<!--                            </div>-->
+
+<!--                            <div class="btn btn-danger cancel">-->
+<!--                                Close-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </footer>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </t>-->
+
+<!--     <t t-name="return_pos_order_line">-->
+<!--        <t t-set="count" t-value="1"/>-->
+<!--        <t t-foreach="order_lines || []" t-as="line">-->
+<!--            <tr>-->
+<!--                <td class="text-center"><t t-esc="count"/></td>-->
+<!--                <td>-->
+<!--                    <div class="checkbox">-->
+<!--                        <label>-->
+<!--                            <input class="line-select" type="checkbox" name="optionsCheckboxes" checked="true" t-att-data-id="line.id">-->
+<!--                                <span class="checkbox-material"><span class="check"></span></span>-->
+<!--                            </input>-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--                <td class="text-right"><t t-esc="line.product.display_name"/> </td>-->
+
+<!--            </tr>-->
+<!--            <t t-set="count" t-value="count + 1"/>-->
+<!--        </t>-->
+<!--    </t>-->
+
+
+
+</templates>

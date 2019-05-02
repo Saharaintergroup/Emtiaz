@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+
+        <record id="product_template_normal_form_view_toppings" model="ir.ui.view">
+            <field name="name">product.toppings</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id"
+                   ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//div[@name='options']" position="inside">
+                    <div attrs="{'invisible': ['|',('lux_toppings','=',True),('norm_toppings', '=', True)]}">
+                                <field name="has_toppings" />
+                                <label for="has_toppings"/>
+                            </div>
+                    <div  attrs="{'invisible': ['|',('lux_toppings','=',True),('has_toppings', '=', True)]}">
+                                <field name="norm_toppings" />
+                                <label for="norm_toppings"/>
+                            </div>
+                     <div attrs="{'invisible': ['|',('norm_toppings','=',True),('has_toppings', '=', True)]}">
+                                <field name="lux_toppings" />
+                                <label for="lux_toppings"/>
+                            </div>
+                </xpath>
+
+            </field>
+        </record>
+
+
+         <record id="product_template_form_view_toppings" model="ir.ui.view">
+            <field name="name">product.toppings</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id"
+                   ref="point_of_sale.product_template_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='available_in_pos']" position="after">
+                    <field name="allowed" attrs="{'invisible': ['|',('norm_toppings','=',True),('lux_toppings', '=', True)]}"/>
+                </xpath>
+            </field>
+         </record>
+
+
+
+    </data>
+</odoo>

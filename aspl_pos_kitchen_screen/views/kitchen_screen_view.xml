@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+
+        <record id="order_inherited_form_view" model="ir.ui.view">
+            <field name="name">pos.order.inherited.view</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <field name="price_unit" position="before">
+                    <field name="order_line_note"/>
+                    <field name="state"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_pos_config_form_kitchen">
+        <field name="name">pos.config.form.view.kitchen</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='iface_display_categ_images']/../../.." position="after">
+                <h2 name="kitchen_order_categ" attrs="{'invisible' : [('is_kitchen', '=', False)]}">Kitchen Order Categories</h2>
+                 <field name="is_kitchen" invisible="1"/>
+
+                <div class="row mt16 o_settings_container" id="kitchen_categ" attrs="{'invisible' : [('is_kitchen', '=', False)]}">
+                        <div class="col-12 col-lg-6 o_setting_box" >
+                            <div class="o_setting_right_pane">
+                                <label for="pos_categories"/>
+                                <div class="text-muted">
+                                    Categories used in this Kitchen
+                                </div>
+                                <div>
+                                    <field name="pos_categories" widget="many2many_tags"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </xpath>
+        </field>
+        </record>
+
+
+    </data>
+</odoo>
