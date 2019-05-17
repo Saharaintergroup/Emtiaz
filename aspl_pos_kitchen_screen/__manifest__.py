@@ -7,7 +7,7 @@
     'description': "POS Kitchen Screen shows orders and their state to Cook and Manager",
 	'author': "Sigb",
     'currency': 'EUR',
-    'version': '1.0',
+    'version': '3.0',
     'depends': ['point_of_sale',],
     'images': ['static/description/main_screenshot.png'],
     'data': [

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Product Toppings',
-    'version': '1.1',
+    'version': '12.1',
     'category': 'Product',
     'sequence': 1,
     "author": "",
